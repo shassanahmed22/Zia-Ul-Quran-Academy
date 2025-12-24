@@ -1,5 +1,7 @@
+// ===== CURRENT YEAR =====
 document.getElementById("year").textContent = new Date().getFullYear()
 
+// ===== SMOOTH SCROLL =====
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", function (e) {
         e.preventDefault()
@@ -13,73 +15,77 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     })
 })
 
+// ===== TABS =====
 const tabBtns = document.querySelectorAll(".tab-btn")
 const tabPanes = document.querySelectorAll(".tab-pane")
 
 tabBtns.forEach((btn) => {
     btn.addEventListener("click", () => {
-        // Remove active from all
         tabBtns.forEach((b) => b.classList.remove("active"))
         tabPanes.forEach((p) => p.classList.remove("active"))
 
-        // Add active to clicked
         btn.classList.add("active")
         const tabId = btn.getAttribute("data-tab")
         document.getElementById(tabId).classList.add("active")
     })
 })
 
+// ===== MOBILE MENU (FIXED) =====
 const menuToggle = document.getElementById("menuToggle")
 const nav = document.querySelector(".nav")
 
 menuToggle.addEventListener("click", () => {
     nav.classList.toggle("active")
+
+    // ICON TOGGLE
+    if (nav.classList.contains("active")) {
+        menuToggle.innerHTML = "✖"
+    } else {
+        menuToggle.innerHTML = "☰"
+    }
 })
 
+// ===== CLOSE MENU ON LINK CLICK =====
 document.querySelectorAll(".nav a").forEach((link) => {
     link.addEventListener("click", () => {
         nav.classList.remove("active")
+        menuToggle.innerHTML = "☰"
     })
 })
 
+// ===== CONTACT FORM → WHATSAPP =====
 document.getElementById('contactForm').addEventListener('submit', function (e) {
-    e.preventDefault();
+    e.preventDefault()
 
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const message = document.getElementById('message').value;
+    const name = document.getElementById('name').value
+    const email = document.getElementById('email').value
+    const message = document.getElementById('message').value
 
-    const whatsappNumber = "923135586040"; // apna number
+    const whatsappNumber = "923135586040"
 
     const text = encodeURIComponent(
         `Name: ${name}\nEmail: ${email}\nMessage: ${message}`
-    );
+    )
 
-    alert("Thank you! Your message is being sent on WhatsApp.");
+    alert("Thank you! Your message is being sent on WhatsApp.")
+    window.open(`https://wa.me/${whatsappNumber}?text=${text}`, "_blank")
+    this.reset()
+})
 
-    window.open(`https://wa.me/${whatsappNumber}?text=${text}`, "_blank");
-});
-
-
+// ===== REGISTER FORM =====
 document.getElementById("registerForm").addEventListener("submit", function (e) {
     e.preventDefault()
     alert("Registration submitted! We will contact you soon.")
     this.reset()
 })
 
-document.getElementById("contactForm").addEventListener("submit", function (e) {
-    e.preventDefault()
-    alert("Message sent! Thank you for reaching out.")
-    this.reset()
-})
-
+// ===== ACTIVE NAV ON SCROLL =====
 window.addEventListener("scroll", () => {
     let current = ""
     const sections = document.querySelectorAll("section")
 
     sections.forEach((section) => {
         const sectionTop = section.offsetTop
-        const sectionHeight = section.clientHeight
         if (pageYOffset >= sectionTop - 200) {
             current = section.getAttribute("id")
         }
@@ -93,43 +99,35 @@ window.addEventListener("scroll", () => {
     })
 })
 
+// ===== WHATSAPP FLOATING CHAT =====
 document.addEventListener("DOMContentLoaded", function () {
-    const chatBtn = document.getElementById("whatsapp-chat");
-    const popup = document.getElementById("whatsapp-popup");
-    const closeBtn = document.getElementById("close-popup");
-    const sendBtn = document.getElementById("send-whatsapp");
-    const input = document.getElementById("whatsapp-input");
+    const chatBtn = document.getElementById("whatsapp-chat")
+    const popup = document.getElementById("whatsapp-popup")
+    const closeBtn = document.getElementById("close-popup")
+    const sendBtn = document.getElementById("send-whatsapp")
+    const input = document.getElementById("whatsapp-input")
 
-    // Apna WhatsApp number yahan daalein
-    const whatsappNumber = "923135586040";
+    const whatsappNumber = "923135586040"
+    const websiteLink = "https://www.tumhariwebsite.com"
 
-    // Apni website link
-    const websiteLink = "https://www.tumhariwebsite.com"; // change this
-
-    // Toggle popup
     chatBtn.onclick = () => {
-        popup.style.display = popup.style.display === "block" ? "none" : "block";
-    };
+        popup.style.display = popup.style.display === "block" ? "none" : "block"
+    }
 
-    // Close popup
     closeBtn.onclick = () => {
-        popup.style.display = "none";
-    };
+        popup.style.display = "none"
+    }
 
-    // Send message
     sendBtn.onclick = () => {
-        const msg = input.value.trim();
+        const msg = input.value.trim()
         if (!msg) {
-            alert("Please write something first!");
-            return;
+            alert("Please write something first!")
+            return
         }
 
-        // Message + website link
-        const finalMsg = `${msg}\n\nSent from: ${websiteLink}`;
-
-        const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(finalMsg)}`;
-        window.open(url, "_blank");
-    };
-});
-
-
+        const finalMsg = `${msg}\n\nSent from: ${websiteLink}`
+        const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(finalMsg)}`
+        window.open(url, "_blank")
+        input.value = ""
+    }
+})

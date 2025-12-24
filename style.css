@@ -1,9 +1,18 @@
+/* =============== RESET =============== */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+html,
+body {
+    width: 100%;
+    overflow-x: hidden;
+    /* No horizontal scroll */
+}
+
+/* =============== ROOT VARIABLES =============== */
 :root {
     --primary: #e7a222;
     --dark: #3a1818;
@@ -12,6 +21,7 @@
     --white: #fff;
 }
 
+/* =============== BODY =============== */
 body {
     font-family: "Montserrat", sans-serif;
     line-height: 1.6;
@@ -25,7 +35,7 @@ body {
     padding: 0 20px;
 }
 
-/* HEADER */
+/* =============== HEADER =============== */
 .header {
     background-color: var(--primary);
     padding: 15px 0;
@@ -36,17 +46,20 @@ body {
 }
 
 .header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    min-height: 60px;
 }
 
-
 .logo h1 {
-    color: black;
     font-size: 28px;
-    color: var(--white);
     font-weight: 700;
+    color: var(--white);
+    user-select: none;
 }
 
 .academy-header {
@@ -54,25 +67,22 @@ body {
     align-items: center;
     background-color: #f0ad2c;
     padding: 10px 30px;
-    /* padding kam */
     height: 80px;
-    /* fixed navbar height */
 }
 
 .logo-img img {
     width: 120px;
-    /* logo chhota */
     height: auto;
+    user-select: none;
 }
 
 .academy-text {
-    margin-left: 4px;
+    margin-left: 8px;
 }
 
 .academy-text h2 {
     margin: 0;
     font-size: 22px;
-    /* font size kam */
     line-height: 1.2;
     color: black;
 }
@@ -85,6 +95,7 @@ body {
     color: white;
 }
 
+/* =============== NAVIGATION =============== */
 .nav ul {
     display: flex;
     list-style: none;
@@ -103,19 +114,23 @@ body {
     opacity: 0.8;
 }
 
+/* Menu Toggle Button (Hamburger & Cross) */
 .menu-toggle {
     display: none;
     background: none;
     border: none;
     color: var(--white);
-    font-size: 24px;
+    font-size: 28px;
     cursor: pointer;
+    padding: 4px 10px;
+    user-select: none;
+    z-index: 11000;
 }
 
-/* HERO SECTION */
+/* =============== HERO SECTION =============== */
 .hero {
     background: linear-gradient(rgba(58, 24, 24, 0.7), rgba(58, 24, 24, 0.7)),
-        url(https://plus.unsplash.com/premium_photo-1677587536653-0d02efbb70ee?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D) center / cover;
+        url(https://plus.unsplash.com/premium_photo-1677587536653-0d02efbb70ee?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D) center / cover no-repeat;
     height: 400px;
     display: flex;
     align-items: center;
@@ -126,22 +141,20 @@ body {
 
 .hero-content h6 {
     margin-top: 300px;
-    /* اگر اوپر سے یہی gap چاہیے */
     margin-bottom: 0;
-    color: white;
     font-size: 35px;
+    color: white;
 }
 
 .hero-content h2 {
     margin-top: 0;
-    color: white;
     font-size: 32px;
     font-weight: 700;
     max-width: 800px;
+    color: white;
 }
 
-
-/* FEATURES SECTION */
+/* =============== FEATURES SECTION =============== */
 .features {
     background-color: var(--primary);
     padding: 60px 0;
@@ -194,7 +207,7 @@ body {
     padding-bottom: 3px;
 }
 
-/* ABOUT SECTION */
+/* =============== ABOUT SECTION =============== */
 .about {
     background: var(--light);
     padding: 80px 0;
@@ -283,10 +296,10 @@ body {
     color: var(--text);
 }
 
-/* REGISTER SECTION */
+/* =============== REGISTER SECTION =============== */
 .register {
     background: linear-gradient(rgba(58, 24, 24, 0.5), rgba(58, 24, 24, 0.5)),
-        url("https://images.unsplash.com/photo-1578895151671-7d2e2e89dcf7?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D") center / cover;
+        url("https://images.unsplash.com/photo-1578895151671-7d2e2e89dcf7?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D") center / cover no-repeat;
     padding: 80px 0;
 }
 
@@ -359,7 +372,7 @@ body {
     opacity: 0.9;
 }
 
-/* COURSES SECTION */
+/* =============== COURSES SECTION =============== */
 .courses {
     background: var(--light);
     padding: 80px 0;
@@ -422,7 +435,7 @@ body {
     opacity: 0.9;
 }
 
-/* CONTACT SECTION */
+/* =============== CONTACT SECTION =============== */
 .contact {
     background: var(--light);
     padding: 80px 0;
@@ -461,8 +474,7 @@ body {
     color: var(--text);
 }
 
-/* Floating WhatsApp Icon */
-/* WhatsApp Button */
+/* =============== WHATSAPP FLOATING ICON =============== */
 .whatsapp-chat {
     position: fixed;
     bottom: 20px;
@@ -483,7 +495,7 @@ body {
     height: 32px;
 }
 
-/* Popup Chat */
+/* =============== WHATSAPP POPUP =============== */
 .whatsapp-popup {
     position: fixed;
     bottom: 85px;
@@ -513,9 +525,7 @@ body {
     border-radius: 4px;
 }
 
-
-
-/* FOOTER */
+/* =============== FOOTER =============== */
 .footer {
     background-color: var(--primary);
     color: var(--white);
@@ -523,8 +533,50 @@ body {
     padding: 20px 0;
 }
 
-/* RESPONSIVE */
+/* =============== RESPONSIVE BREAKPOINTS =============== */
+
+/* Tablet and below */
+@media (max-width: 992px) {
+    .academy-header {
+        padding: 10px 20px;
+        height: 70px;
+    }
+
+    .logo-img img {
+        width: 100px;
+    }
+
+    .academy-text h2 {
+        font-size: 18px;
+    }
+
+    .academy-text h1 {
+        font-size: 22px;
+        letter-spacing: 4px;
+    }
+
+    .nav ul {
+        gap: 24px;
+    }
+
+    .feature-card,
+    .course-card {
+        padding: 25px;
+    }
+
+    .courses-carousel {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    .contact-wrapper {
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+    }
+}
+
+/* Mobile landscape & smaller */
 @media (max-width: 768px) {
+
     .nav {
         display: none;
     }
@@ -537,11 +589,26 @@ body {
         display: flex;
         flex-direction: column;
         position: absolute;
-        top: 60px;
+        top: 70px;
         left: 0;
         right: 0;
         background-color: var(--primary);
-        padding: 20px;
+        padding: 20px 30px;
+        z-index: 11000;
+    }
+
+    .nav ul {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .hero {
+        height: 320px;
+    }
+
+    .hero-content h6 {
+        margin-top: 280px;
+        font-size: 28px;
     }
 
     .hero-content h2 {
@@ -555,9 +622,92 @@ body {
     .contact-wrapper {
         grid-template-columns: 1fr;
     }
+}
+
+/* Mobile portrait (Redmi 12 and similar) */
+@media (max-width: 420px) {
+    .academy-header {
+        padding: 10px 15px;
+        height: 60px;
+    }
+
+    .logo-img img {
+        width: 85px;
+    }
+
+    .academy-text h2 {
+        font-size: 16px;
+    }
+
+    .academy-text h1 {
+        font-size: 20px;
+        letter-spacing: 2px;
+    }
 
     .nav ul {
-        flex-direction: column;
-        gap: 15px;
+        gap: 12px;
+    }
+
+    .hero {
+        height: 280px;
+    }
+
+    .hero-content h6 {
+        margin-top: 220px;
+        font-size: 24px;
+    }
+
+    .hero-content h2 {
+        font-size: 20px;
+        max-width: 95%;
+    }
+
+    .feature-card,
+    .course-card {
+        padding: 20px 15px;
+    }
+
+    .courses-carousel {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .contact-wrapper {
+        gap: 20px;
+    }
+
+    .menu-toggle {
+        font-size: 26px;
+        padding: 6px 8px;
+    }
+}
+
+/* Super small devices fix */
+@media (max-width: 320px) {
+    .academy-text h1 {
+        font-size: 18px;
+        letter-spacing: 1px;
+    }
+
+    .academy-text h2 {
+        font-size: 14px;
+    }
+
+    .logo-img img {
+        width: 75px;
+    }
+
+    .hero-content h6 {
+        font-size: 20px;
+        margin-top: 180px;
+    }
+
+    .hero-content h2 {
+        font-size: 18px;
+    }
+
+    .menu-toggle {
+        font-size: 24px;
+        padding: 6px 8px;
     }
 }

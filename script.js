@@ -107,7 +107,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const sendBtn = document.getElementById("send-whatsapp")
     const input = document.getElementById("whatsapp-input")
 
-    const whatsappNumber = "923135586040"
+    const whatsappNumber = "923209619484"
     const websiteLink = "https://www.tumhariwebsite.com"
 
     chatBtn.onclick = () => {

@@ -110,8 +110,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const sendBtn = document.getElementById("send-whatsapp")
     const input = document.getElementById("whatsapp-input")
 
-    const whatsappNumber = "923209619484"
-    const websiteLink = "https://ziaulquran.com"
+    const whatsappNumber = "923145300399"
+    const websiteLink = "https://spiffy-sfogliatella-a47e0d.netlify.app/"
 
     if (chatBtn) {
         chatBtn.onclick = () => {

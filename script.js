@@ -1,7 +1,14 @@
-// ===== CURRENT YEAR =====
-document.getElementById("year").textContent = new Date().getFullYear()
+// ============================================
+// CURRENT YEAR
+// ============================================
+const yearElement = document.getElementById("year")
+if (yearElement) {
+    yearElement.textContent = new Date().getFullYear()
+}
 
-// ===== SMOOTH SCROLL =====
+// ============================================
+// SMOOTH SCROLL
+// ============================================
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", function (e) {
         e.preventDefault()
@@ -12,10 +19,20 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
                 block: "start",
             })
         }
+
+        // Close mobile menu after clicking link
+        const nav = document.querySelector(".nav")
+        const menuToggle = document.getElementById("menuToggle")
+        if (nav && nav.classList.contains("active")) {
+            nav.classList.remove("active")
+            menuToggle.innerHTML = '<i class="fas fa-bars"></i>'
+        }
     })
 })
 
-// ===== TABS =====
+// ============================================
+// TABS FUNCTIONALITY
+// ============================================
 const tabBtns = document.querySelectorAll(".tab-btn")
 const tabPanes = document.querySelectorAll(".tab-pane")
 
@@ -30,56 +47,40 @@ tabBtns.forEach((btn) => {
     })
 })
 
-// ===== MOBILE MENU (FIXED) =====
+// ============================================
+// MOBILE MENU TOGGLE
+// ============================================
 const menuToggle = document.getElementById("menuToggle")
 const nav = document.querySelector(".nav")
 
-menuToggle.addEventListener("click", () => {
-    nav.classList.toggle("active")
+if (menuToggle) {
+    menuToggle.addEventListener("click", () => {
+        nav.classList.toggle("active")
 
-    // ICON TOGGLE
-    if (nav.classList.contains("active")) {
-        menuToggle.innerHTML = "✖"
-    } else {
-        menuToggle.innerHTML = "☰"
-    }
-})
+        // Toggle icon
+        if (nav.classList.contains("active")) {
+            menuToggle.innerHTML = '<i class="fas fa-times"></i>'
+        } else {
+            menuToggle.innerHTML = '<i class="fas fa-bars"></i>'
+        }
+    })
+}
 
-// ===== CLOSE MENU ON LINK CLICK =====
+// ============================================
+// CLOSE MENU ON LINK CLICK
+// ============================================
 document.querySelectorAll(".nav a").forEach((link) => {
     link.addEventListener("click", () => {
-        nav.classList.remove("active")
-        menuToggle.innerHTML = "☰"
+        if (nav && menuToggle) {
+            nav.classList.remove("active")
+            menuToggle.innerHTML = '<i class="fas fa-bars"></i>'
+        }
     })
 })
 
-// ===== CONTACT FORM → WHATSAPP =====
-document.getElementById('contactForm').addEventListener('submit', function (e) {
-    e.preventDefault()
-
-    const name = document.getElementById('name').value
-    const email = document.getElementById('email').value
-    const message = document.getElementById('message').value
-
-    const whatsappNumber = "923135586040"
-
-    const text = encodeURIComponent(
-        `Name: ${name}\nEmail: ${email}\nMessage: ${message}`
-    )
-
-    alert("Thank you! Your message is being sent on WhatsApp.")
-    window.open(`https://wa.me/${whatsappNumber}?text=${text}`, "_blank")
-    this.reset()
-})
-
-// ===== REGISTER FORM =====
-document.getElementById("registerForm").addEventListener("submit", function (e) {
-    e.preventDefault()
-    alert("Registration submitted! We will contact you soon.")
-    this.reset()
-})
-
-// ===== ACTIVE NAV ON SCROLL =====
+// ============================================
+// ACTIVE NAV ON SCROLL
+// ============================================
 window.addEventListener("scroll", () => {
     let current = ""
     const sections = document.querySelectorAll("section")
@@ -99,8 +100,10 @@ window.addEventListener("scroll", () => {
     })
 })
 
-// ===== WHATSAPP FLOATING CHAT =====
-document.addEventListener("DOMContentLoaded", function () {
+// ============================================
+// WHATSAPP FLOATING CHAT
+// ============================================
+document.addEventListener("DOMContentLoaded", () => {
     const chatBtn = document.getElementById("whatsapp-chat")
     const popup = document.getElementById("whatsapp-popup")
     const closeBtn = document.getElementById("close-popup")
@@ -108,26 +111,78 @@ document.addEventListener("DOMContentLoaded", function () {
     const input = document.getElementById("whatsapp-input")
 
     const whatsappNumber = "923209619484"
-    const websiteLink = "https://www.tumhariwebsite.com"
+    const websiteLink = "https://ziaulquran.com"
 
-    chatBtn.onclick = () => {
-        popup.style.display = popup.style.display === "block" ? "none" : "block"
-    }
-
-    closeBtn.onclick = () => {
-        popup.style.display = "none"
-    }
-
-    sendBtn.onclick = () => {
-        const msg = input.value.trim()
-        if (!msg) {
-            alert("Please write something first!")
-            return
+    if (chatBtn) {
+        chatBtn.onclick = () => {
+            popup.style.display = popup.style.display === "block" ? "none" : "block"
+            if (popup.style.display === "block") {
+                input.focus()
+            }
         }
+    }
 
-        const finalMsg = `${msg}\n\nSent from: ${websiteLink}`
-        const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(finalMsg)}`
-        window.open(url, "_blank")
-        input.value = ""
+    if (closeBtn) {
+        closeBtn.onclick = () => {
+            popup.style.display = "none"
+        }
+    }
+
+    if (sendBtn) {
+        sendBtn.onclick = () => {
+            const msg = input.value.trim()
+            if (!msg) {
+                alert("Please write something first!")
+                return
+            }
+
+            const finalMsg = `${msg}\n\nSent from: ${websiteLink}`
+            const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(finalMsg)}`
+            window.open(url, "_blank")
+            input.value = ""
+            popup.style.display = "none"
+        }
+    }
+
+    // Send message on Enter key
+    if (input) {
+        input.addEventListener("keypress", (e) => {
+            if (e.key === "Enter" && !e.shiftKey) {
+                e.preventDefault()
+                sendBtn.click()
+            }
+        })
     }
 })
+
+// ============================================
+// CLOSE POPUP ON OUTSIDE CLICK
+// ============================================
+window.addEventListener("click", (e) => {
+    const popup = document.getElementById("whatsapp-popup")
+    if (e.target === popup) {
+        popup.style.display = "none"
+    }
+})
+
+// ============================================
+// HEADER SCROLL EFFECT
+// ============================================
+const header = document.querySelector(".header")
+let lastScroll = 0
+
+if (header) {
+    window.addEventListener("scroll", () => {
+        const currentScroll = window.pageYOffset
+
+        if (currentScroll > 100) {
+            header.classList.add("scrolled")
+        } else {
+            header.classList.remove("scrolled")
+        }
+
+        lastScroll = currentScroll
+    })
+}
+
+console.log("Script.js loaded successfully!")
